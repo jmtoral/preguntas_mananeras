@@ -160,7 +160,7 @@ datos, qué es cada unidad que se cuenta y qué no se puede concluir con ellos.<
  <div><b>485</b><span>conferencias, del 3 de octubre de 2024 al 30 de septiembre de 2026</span></div>
  <div><b>68,345</b><span>turnos de habla</span></div>
  <div><b>24,482</b><span>preguntas de la prensa</span></div>
- <div><b>2,883</b><span>tandas: alguien recibe el micrófono y hace su serie de preguntas</span></div>
+ <div><b>2,894</b><span>tandas: alguien recibe el micrófono y hace su serie de preguntas</span></div>
  <div><b>397</b><span>periodistas identificados</span></div>
  <div><b>644</b><span>medios nombrados</span></div>
 </div>
@@ -225,7 +225,7 @@ Incluye saludos, inaudibles y gritos desde el salón.</td><td class="n">28,615</
 <tr><td>Pregunta</td><td>Un turno de prensa dentro de una tanda que no es ruido. <b>Un turno es una pregunta aunque
 traiga tres interrogaciones adentro</b>: se cuenta lo que la persona dijo de corrido antes de que le contestaran.</td><td class="n">24,482</td></tr>
 <tr><td>Tanda · intervención</td><td>Una persona recibe el micrófono, se presenta y hace su serie de preguntas, con las
-respuestas intercaladas. En los datos se llama <i>hilo</i>.</td><td class="n">2,883</td></tr>
+respuestas intercaladas. En los datos se llama <i>hilo</i>.</td><td class="n">2,894</td></tr>
 <tr><td>Intercambio</td><td>Una pregunta más todo lo que le contestan hasta la siguiente pregunta. Es lo que muestra el
 buscador como resultado.</td><td class="n">24,482</td></tr>
 </tbody></table></div>
@@ -299,7 +299,7 @@ persona se presenta en voz alta, y eso hace una sola vez por tanda.</p>
  <li><b>Canonización.</b> Los nombres se escriben mal y los medios de muchas formas. Las erratas se unen solas cuando una
  grafía es rara y la otra frecuente; cuando las dos son frecuentes, decide una persona (pueden ser dos periodistas
  distintos). Esas decisiones viven en tablas de corrección escritas a mano. Lo mismo con las presentaciones que ningún patrón alcanza —«Mi nombre es Christian Mart y soy
- creador de contenido», sin medio—: 27 están anotadas a mano, turno por turno, y quedan marcadas como <code>manual</code>. Quien nombra varias cabeceras
+ creador de contenido», sin medio—: 38 están anotadas a mano, turno por turno, y quedan marcadas como <code>manual</code>. Entre ellas, las tandas de quien recibe la palabra sin decir nunca su nombre: ahí la prueba es la presidenta llamándola por su nombre («A ver, Reyna, te voy a dar la palabra»). Quien nombra varias cabeceras
  —<i>«Diario Basta, Tabasco Hoy, Campeche Hoy y Quintana Roo Hoy, de Grupo Cantón»</i>— le suma un turno a cada una.</li>
 </ul>
 <div class="aviso alerta"><p><b>El faltante conocido.</b> Contra un conteo manual externo del primer semestre de 2026
@@ -340,7 +340,7 @@ flowchart TD
   A["gob.mx/presidencia<br/>versiones estenográficas"] -->|"descubrimiento:<br/>recorre el archivo paginado"| B[("urls.jsonl")]
   B -->|"descarga una sola vez<br/>respaldo: Wayback Machine"| C[("data/raw/<br/>HTML crudo, inmutable")]
   C -->|"lector: limpia videos y espacios,<br/>parte por etiqueta de hablante"| D[("turnos.jsonl<br/>68,345 turnos")]
-  D -->|"autopresentación<br/>y propagación"| E[("hilos.jsonl<br/>2,883 tandas")]
+  D -->|"autopresentación<br/>y propagación"| E[("hilos.jsonl<br/>2,894 tandas")]
   CFG[["config/<br/>correcciones humanas"]] -.-> F
   E --> F["canonización<br/>de nombres y medios"]
   E -->|"pregunta + contexto acotado"| G{{"Gemini 2.5 Flash<br/>18 categorías + asunto"}}
