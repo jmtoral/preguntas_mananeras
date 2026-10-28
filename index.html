@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Preguntas de la mañanera</title>
+<meta name="description" content="Quién pregunta qué en las conferencias matutinas de la Presidencia de México, de octubre de 2024 a septiembre de 2026: metodología, exploración y buscador.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Bitter:wght@600;700&display=swap">
+<style>
+:root{
+ color-scheme:light;
+ --papel:#FFFFFF; --sup:#F7F7F5; --tinta:#121212; --suave:#666666; --linea:#E2E2E2;
+ --p1:#C9D7E8; --p2:#8FAAC9; --p3:#5C7FA6; --p4:#33587D; --p5:#121F45;
+ --acento:#326891; --ambar:#B7791F; --rojo:#A63D40;
+ --f-body:Georgia,"Times New Roman",Times,serif;
+ --f-head:"Bitter",Georgia,serif;
+ --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+ --barra:52px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--papel);color:var(--tinta);font-family:"Libre Franklin",system-ui,sans-serif;
+ font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+/* --- pestañas --- */
+.barra{position:sticky;top:0;z-index:10;height:var(--barra);display:flex;align-items:stretch;gap:4px;
+ background:var(--p5);color:#fff;padding:0 16px;overflow-x:auto;scrollbar-width:none}
+.barra::-webkit-scrollbar{display:none}
+.marca{display:flex;align-items:center;font-family:var(--f-head);font-weight:700;font-size:16px;
+ margin-right:18px;white-space:nowrap}
+.tab{font:inherit;font-size:13.5px;font-weight:600;color:#C9D7E8;background:none;border:0;
+ border-bottom:3px solid transparent;padding:0 14px;cursor:pointer;white-space:nowrap;text-decoration:none;
+ display:flex;align-items:center}
+.tab:hover{color:#fff}
+.tab[aria-selected=true]{color:#fff;border-bottom-color:#8FAAC9}
+.tab:focus-visible{outline:2px solid #fff;outline-offset:-4px}
+.vista[hidden]{display:none}
+.marco{display:block;width:100%;height:calc(100vh - var(--barra));height:calc(100dvh - var(--barra));border:0}
+.cargando{padding:40px 16px;color:var(--suave);font-family:var(--f-body)}
+
+/* --- metodología --- */
+.env{max-width:860px;margin:0 auto;padding:40px 16px 90px}
+.et{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--suave);font-weight:600;margin:0 0 10px}
+h1{font-family:var(--f-head);font-size:clamp(28px,4.6vw,40px);line-height:1.12;margin:0 0 12px;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--suave);font-family:var(--f-body);font-size:17px;margin:0;max-width:64ch}
+h2{font-family:var(--f-head);font-size:23px;line-height:1.2;margin:52px 0 10px;scroll-margin-top:70px}
+h2 small{display:block;font-family:"Libre Franklin",sans-serif;font-size:11px;letter-spacing:.13em;
+ text-transform:uppercase;color:var(--suave);font-weight:600;margin-bottom:6px}
+h3{font-size:15px;margin:26px 0 6px}
+p,li{font-family:var(--f-body);font-size:16px;line-height:1.62}
+p{margin:0 0 14px}
+ul,ol{padding-left:22px;margin:0 0 14px}
+li{margin-bottom:6px}
+code,.mono{font-family:var(--f-mono);font-size:.86em;background:var(--sup);border:1px solid var(--linea);
+ border-radius:3px;padding:0 4px}
+a{color:var(--acento)}
+.indice{display:flex;flex-wrap:wrap;gap:6px 8px;margin:22px 0 0;padding:0;list-style:none}
+.indice li{margin:0;font-family:"Libre Franklin",sans-serif;font-size:12.5px}
+.indice a{display:block;padding:4px 10px;border:1px solid var(--linea);border-radius:3px;text-decoration:none;color:var(--tinta)}
+.indice a:hover{border-color:var(--p3)}
+
+.cifras{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linea);
+ border:1px solid var(--linea);margin:26px 0 8px}
+.cifras div{background:var(--papel);padding:14px 14px 12px}
+.cifras b{display:block;font-size:26px;line-height:1.05;color:var(--p5);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.cifras span{display:block;font-size:12.5px;color:var(--suave);margin-top:4px;line-height:1.35}
+.pie{font-size:12.5px;color:var(--suave);font-family:"Libre Franklin",sans-serif}
+
+.aviso{border-left:3px solid var(--p4);background:var(--sup);padding:13px 16px;margin:18px 0}
+.aviso p{margin:0;font-size:15px;color:var(--suave)}
+.aviso b{color:var(--tinta)}
+.aviso.alerta{border-left-color:var(--rojo)}
+
+/* transcripción anotada */
+.transc{border:1px solid var(--linea);background:var(--sup);padding:6px 0;margin:18px 0}
+.tr{display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:14px;padding:9px 16px;align-items:start}
+.tr+.tr{border-top:1px dashed var(--linea)}
+.tr .txt{font-family:var(--f-body);font-size:14.5px;line-height:1.5}
+.tr .txt b{font-family:"Libre Franklin",sans-serif;font-size:12px;letter-spacing:.04em}
+.tr .nota{font-size:12px;line-height:1.4;color:var(--suave)}
+.tr .nota em{display:inline-block;font-style:normal;font-weight:600;font-size:10.5px;letter-spacing:.06em;
+ text-transform:uppercase;border-radius:2px;padding:1px 6px;margin-bottom:3px}
+.e-fun{background:#E2E2E2;color:#121212}
+.e-preg{background:var(--p4);color:#fff}
+.e-resp{background:var(--p1);color:#121212}
+.e-ruido{background:#fff;color:var(--rojo);border:1px solid var(--rojo)}
+.tr.en-tanda{border-left:4px solid var(--p4);padding-left:12px}
+.tr.fuera{opacity:.7}
+.tanda-et{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--p4);font-weight:700;padding:8px 16px 0}
+
+.glosario{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+.glosario th,.glosario td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--linea)}
+.glosario th{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--suave)}
+.glosario td:first-child{font-weight:700;white-space:nowrap}
+.glosario td.n{text-align:right;font-family:var(--f-mono);font-size:13px;white-space:nowrap}
+.glosario td:nth-child(2){font-family:var(--f-body);font-size:15px}
+.tabla-env{overflow-x:auto}
+
+pre{background:#0F1A33;color:#E6ECF5;padding:14px 16px;border-radius:4px;overflow-x:auto;
+ font-family:var(--f-mono);font-size:12.5px;line-height:1.5;margin:10px 0 16px}
+pre .k{color:#8FB8E8}.pre-et{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--suave);font-weight:600;margin:18px 0 4px}
+
+.mermaid-env{border:1px solid var(--linea);background:var(--papel);padding:16px 8px;margin:18px 0;overflow-x:auto}
+.mermaid-env .mermaid{min-width:620px;text-align:center;background:none;color:inherit;padding:0;margin:0;border-radius:0}
+.mermaid-env .mermaid:not([data-processed]){font-family:var(--f-mono);font-size:12px;white-space:pre;color:var(--suave);text-align:left}
+
+.herr{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:14px 0}
+.herr div{border:1px solid var(--linea);padding:12px 14px}
+.herr b{display:block;font-size:13.5px;margin-bottom:3px}
+.herr span{display:block;font-family:var(--f-body);font-size:14px;color:var(--suave);line-height:1.45}
+
+.pasos{counter-reset:p;list-style:none;padding:0}
+.pasos li{counter-increment:p;position:relative;padding-left:40px;margin-bottom:14px}
+.pasos li::before{content:counter(p);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;
+ background:var(--p5);color:#fff;font-family:"Libre Franklin",sans-serif;font-size:13px;font-weight:700;
+ display:flex;align-items:center;justify-content:center}
+
+@media(max-width:640px){
+ .tr{grid-template-columns:1fr;gap:4px}
+ .marca{display:none}
+ .cifras{grid-template-columns:repeat(2,1fr)}
+ p,li{font-size:15.5px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="barra" role="tablist" aria-label="Secciones">
+ <span class="marca">Preguntas de la mañanera</span>
+ <a class="tab" role="tab" href="#metodologia" data-v="metodologia" aria-selected="true">Metodología</a>
+ <a class="tab" role="tab" href="#exploracion" data-v="exploracion" aria-selected="false">Quién pregunta</a>
+ <a class="tab" role="tab" href="#buscador" data-v="buscador" aria-selected="false">Buscador</a>
+</nav>
+
+<!-- ================================================================ METODOLOGÍA -->
+<main class="vista" id="v-metodologia" role="tabpanel">
+<div class="env">
+<p class="et">Metodología · datos al 30 de septiembre de 2026</p>
+<h1>Cómo se convirtieron 485 conferencias en una base de preguntas</h1>
+<p class="sub">Este sitio responde una pregunta concreta: en las conferencias matutinas de la Presidencia,
+<b>quién recibe la palabra, de qué pregunta y qué le contestan</b>. Aquí se explica de dónde salen los
+datos, qué es cada unidad que se cuenta y qué no se puede concluir con ellos.</p>
+
+<ul class="indice">
+ <li><a href="#m-cifras">Las cifras</a></li>
+ <li><a href="#m-fuente">La fuente</a></li>
+ <li><a href="#m-turno">Turno y pregunta</a></li>
+ <li><a href="#m-guardado">Cómo se guardan</a></li>
+ <li><a href="#m-quien">Quién preguntó</a></li>
+ <li><a href="#m-temas">Temas</a></li>
+ <li><a href="#m-diagrama">El diagrama</a></li>
+ <li><a href="#m-herramientas">Herramientas</a></li>
+ <li><a href="#m-limites">Lo que no dice</a></li>
+</ul>
+
+<div class="cifras" id="m-cifras">
+ <div><b>485</b><span>conferencias, del 3 de octubre de 2024 al 30 de septiembre de 2026</span></div>
+ <div><b>68,345</b><span>turnos de habla</span></div>
+ <div><b>24,290</b><span>preguntas de la prensa</span></div>
+ <div><b>2,737</b><span>tandas: alguien recibe el micrófono y hace su serie de preguntas</span></div>
+ <div><b>383</b><span>periodistas identificados</span></div>
+ <div><b>620</b><span>medios nombrados</span></div>
+</div>
+<p class="pie">Las dos pestañas de al lado usan exactamente este corte y estos conteos.</p>
+
+<!-- ------------------------------------------------------------ fuente -->
+<h2 id="m-fuente"><small>1 · La fuente</small>Las versiones estenográficas de gob.mx</h2>
+<p>Después de cada conferencia, la Presidencia publica en <a href="https://www.gob.mx/presidencia" target="_blank" rel="noopener">gob.mx/presidencia</a>
+la <b>versión estenográfica</b>: la transcripción completa, con cada intervención precedida del nombre de quien habla en
+mayúsculas. Es la única fuente de todo lo que se ve en este sitio.</p>
+<ol class="pasos">
+ <li><b>Descubrir.</b> Un programa recorre el archivo paginado de gob.mx y anota la dirección de cada versión
+ estenográfica. Se repasa el archivo completo cada vez, porque al publicarse artículos nuevos las páginas viejas
+ se recorren y un recorrido parcial pierde conferencias sin avisar.</li>
+ <li><b>Descargar una sola vez.</b> Cada página se guarda tal como llegó, en HTML, y <b>nunca se vuelve a
+ descargar ni se sobreescribe</b>. El programa que la lee se ha reescrito muchas veces; el material de origen,
+ no. Si gob.mx no responde, se usa la copia de la Wayback Machine de Internet Archive.</li>
+ <li><b>Leer.</b> De ese HTML se extrae el texto y se parte en turnos de habla. Todo lo demás se calcula a partir
+ de ahí.</li>
+</ol>
+
+<!-- ------------------------------------------------------------ turno -->
+<h2 id="m-turno"><small>2 · Las unidades</small>Un turno no es una pregunta</h2>
+<p>La palabra «pregunta» se usa para cosas distintas. Para contar bien hay que separar cuatro unidades. Así se ven
+en un fragmento real, la conferencia del 18 de agosto de 2026:</p>
+
+<div class="transc" aria-label="Fragmento anotado de una versión estenográfica">
+ <div class="tr fuera">
+  <div class="txt"><b>PREGUNTA:</b> Buenos días, Presidenta.</div>
+  <div class="nota"><em class="e-ruido">turno de prensa, no es pregunta</em><br>Un saludo. Se marca como ruido y no se cuenta.</div>
+ </div>
+ <div class="tanda-et">Tanda de Nancy Rodríguez · empieza cuando dice su nombre</div>
+ <div class="tr en-tanda">
+  <div class="txt"><b>PREGUNTA:</b> Muchas gracias, Presidenta. <u>Nancy Rodríguez, de Oro Sólido y de Empuje Migrante.</u>
+  Presidenta, sobre el bienestar de nuestros niños…</div>
+  <div class="nota"><em class="e-preg">pregunta 1</em><br>Se presenta: su nombre queda <b>declarado</b> y abre la tanda.</div>
+ </div>
+ <div class="tr en-tanda">
+  <div class="txt"><b>PRESIDENTA DE MÉXICO, CLAUDIA SHEINBAUM PARDO:</b> No estoy de acuerdo. Cada familia tiene una
+  problemática distinta…</div>
+  <div class="nota"><em class="e-resp">respuesta</em><br>Turno de funcionaria. Cuenta para «cuánto contesta».</div>
+ </div>
+ <div class="tr en-tanda">
+  <div class="txt"><b>PREGUNTA:</b> Gracias, Presidenta. También en este mismo sentido, en cuanto a la alimentación…</div>
+  <div class="nota"><em class="e-preg">pregunta 2</em><br>Ya no dice su nombre: se le <b>propaga</b> desde el inicio de la tanda.</div>
+ </div>
+ <div class="tr en-tanda">
+  <div class="txt"><b>PRESIDENTA DE MÉXICO, CLAUDIA SHEINBAUM PARDO:</b> Justo ayer… Los lunes nos reunimos con el
+  Gabinete de Salud…</div>
+  <div class="nota"><em class="e-resp">respuesta</em></div>
+ </div>
+</div>
+
+<div class="tabla-env"><table class="glosario">
+<thead><tr><th>Unidad</th><th>Qué es</th><th>Al corte</th></tr></thead>
+<tbody>
+<tr><td>Turno de habla</td><td>Cada bloque que empieza con una etiqueta de hablante en mayúsculas y dos puntos:
+<code>PREGUNTA:</code>, <code>PRESIDENTA DE MÉXICO, CLAUDIA SHEINBAUM PARDO:</code>. Lo dice cualquiera: funcionarios,
+invitados, la prensa.</td><td class="n">68,345</td></tr>
+<tr><td>Turno de prensa</td><td>Un turno con etiqueta de la prensa (<code>PREGUNTA:</code>, <code>INTERLOCUTOR:</code>).
+Incluye saludos, inaudibles y gritos desde el salón.</td><td class="n">28,615</td></tr>
+<tr><td>Pregunta</td><td>Un turno de prensa dentro de una tanda que no es ruido. <b>Un turno es una pregunta aunque
+traiga tres interrogaciones adentro</b>: se cuenta lo que la persona dijo de corrido antes de que le contestaran.</td><td class="n">24,290</td></tr>
+<tr><td>Tanda · intervención</td><td>Una persona recibe el micrófono, se presenta y hace su serie de preguntas, con las
+respuestas intercaladas. En los datos se llama <i>hilo</i>.</td><td class="n">2,737</td></tr>
+<tr><td>Intercambio</td><td>Una pregunta más todo lo que le contestan hasta la siguiente pregunta. Es lo que muestra el
+buscador como resultado.</td><td class="n">24,290</td></tr>
+</tbody></table></div>
+
+<div class="aviso"><p><b>Por qué importa la diferencia.</b> «Fulano hizo 600 preguntas» y «a Fulano le dieron la
+palabra 60 veces» son afirmaciones distintas. La primera mide cuánto pregunta; la segunda, cuántas veces la
+presidenta le concedió el turno. La pestaña «Quién pregunta» reporta las dos, y su cociente.</p></div>
+
+<h3>Lo que se limpia antes de partir en turnos</h3>
+<ul>
+ <li><b>Los videos.</b> Entre <code>(INICIA VIDEO)</code> y <code>(FINALIZA VIDEO)</code> hay voces etiquetadas
+ (<code>VOZ MUJER:</code>) que no son parte de la conferencia. Se quitan.</li>
+ <li><b>Los espacios raros.</b> A veces la etiqueta viene seguida de un espacio duro y deja de reconocerse: el turno
+ se pegaba al anterior y se le atribuía a la presidenta, sin ningún error visible. Se normalizan antes de partir.</li>
+ <li><b>Lo dicho fuera de micrófono.</b> Los apartes entre rayas (<code>—A ver, acá—</code>) se guardan aparte para
+ no inflar los conteos de palabras.</li>
+ <li><b>El ruido de sala.</b> <code>INTERVENCIÓN:</code>, los saludos y los inaudibles se marcan como ruido: no
+ cuentan como preguntas, pero tampoco cortan la tanda en curso.</li>
+</ul>
+
+<!-- ------------------------------------------------------------ guardado -->
+<h2 id="m-guardado"><small>3 · El almacenamiento</small>Cómo se guarda cada pregunta</h2>
+<p>Nada vive en una base de datos: todo son archivos de texto <b>JSON Lines</b> (un registro JSON por renglón), fáciles
+de leer, de versionar y de revisar a mano. Cada capa se escribe aparte y apunta a la anterior, así que se puede
+rehacer una sin tocar las demás.</p>
+
+<p class="pre-et">turnos.jsonl · un renglón por turno de habla</p>
+<pre>{"conferencia_id": "2026-08-18", "orden": 17, "etiqueta": "PREGUNTA", "cargo": null,
+ "hablante": null, "tipo": "prensa", "texto": "Muchas gracias, Presidenta. Nancy Rodríguez…",
+ "apartes": []}</pre>
+
+<p class="pre-et">hilos.jsonl · un renglón por tanda, con sus turnos adentro</p>
+<pre>{"conferencia_id": "2026-08-18", "hilo": 0,
+ "periodista": "Nancy Rodríguez", "medio": "Oro Sólido y de Empuje Migrante",
+ "metodo_identificacion": "regex",
+ "turnos": [
+  {"rol": "pregunta",  "quien": "Nancy Rodríguez", "atribucion": "declarada", "ruido": false, "orden": 17, "texto": "…"},
+  {"rol": "respuesta", "quien": "CLAUDIA SHEINBAUM PARDO", "atribucion": "declarada", "ruido": false, "orden": 18, "texto": "…"},
+  {"rol": "pregunta",  "quien": "Nancy Rodríguez", "atribucion": "propagada", "ruido": false, "orden": 19, "texto": "…"}
+ ]}</pre>
+
+<p class="pre-et">temas_dos_niveles.jsonl · la clasificación de cada pregunta, con su procedencia</p>
+<pre>{"id_pregunta": "2026-08-18-h0-t17",
+ "categoria": "salud_y_bienestar_social",
+ "asunto": "bienestar de niños y regulación redes sociales",
+ "metodo": "llm", "modelo": "gemini-2.5-flash",
+ "fragmento": "Muchas gracias, Presidenta. Nancy Rodríguez, de Oro Sólido…"}</pre>
+
+<ul>
+ <li><b>La llave de una pregunta</b> es <code>conferencia + orden</code> (<code>2026-08-18</code>, turno 17). El número de
+ tanda (<code>h0</code>) cambia cada vez que el lector mejora y descubre una tanda más; el orden del turno dentro de la
+ conferencia no cambia nunca. Por eso ninguna clasificación pagada se pierde al reprocesar.</li>
+ <li><b>Todo dato derivado lleva su procedencia</b>: cómo se obtuvo (<code>regex</code>, <code>llm</code>, <code>manual</code>), con qué
+ modelo, y el fragmento de texto exacto que lo justifica.</li>
+ <li><b>Nada se tira en silencio.</b> Lo que no se pudo procesar va a un archivo de rechazos con la razón.</li>
+ <li><b>Nulo antes que inventado.</b> Si no se sabe quién preguntó, el campo queda vacío.</li>
+</ul>
+
+<!-- ------------------------------------------------------------ quién -->
+<h2 id="m-quien"><small>4 · La atribución</small>Cómo se sabe quién preguntó</h2>
+<p>La estenográfica no dice quién pregunta: escribe <code>PREGUNTA:</code> para todos. El nombre solo aparece cuando la
+persona se presenta en voz alta, y eso hace una sola vez por tanda.</p>
+<ul>
+ <li><b>Autopresentación.</b> Reglas de texto reconocen las formas en que la gente se presenta: <i>«Dalila Escobar, de
+ Proceso»</i>, <i>«Soy Aissa García, de Telesur»</i>, <i>«mi nombre es Viridiana Venta y soy del periódico Diario Cambio»</i>,
+ <i>«Eduardo Esquivel Ancona, Domo de Cristal»</i>, o al despedirse. Cada forma se agregó al encontrar personas que
+ faltaban.</li>
+ <li><b>Propagación.</b> Las siguientes preguntas de la tanda heredan el nombre, marcadas como
+ <code>propagada</code>. Cuando hay varios <code>PREGUNTA:</code> cortos seguidos sin respuesta —gente distinta hablando
+ desde el salón— la atribución se marca <code>incierta</code> y no se le asigna a nadie.</li>
+ <li><b>Canonización.</b> Los nombres se escriben mal y los medios de muchas formas. Las erratas se unen solas cuando una
+ grafía es rara y la otra frecuente; cuando las dos son frecuentes, decide una persona (pueden ser dos periodistas
+ distintos). Esas decisiones viven en tablas de corrección escritas a mano. Quien nombra varias cabeceras
+ —<i>«Diario Basta, Tabasco Hoy, Campeche Hoy y Quintana Roo Hoy, de Grupo Cantón»</i>— le suma un turno a cada una.</li>
+</ul>
+<div class="aviso alerta"><p><b>El faltante conocido.</b> Contra un conteo manual externo del primer semestre de 2026
+falta un <b>14%</b> de las tandas. No es aleatorio: son personas que recibieron la palabra sin decir su nombre, y la
+estenográfica no permite identificarlas. Sus preguntas no se le cargan a nadie.</p></div>
+
+<!-- ------------------------------------------------------------ temas -->
+<h2 id="m-temas"><small>5 · La clasificación</small>De qué trata cada pregunta</h2>
+<p>Cada pregunta se clasificó con un modelo de lenguaje, <b>Gemini 2.5 Flash</b> de Google, con temperatura 0, en dos
+niveles:</p>
+<ul>
+ <li><b>Categoría</b>: una de 18 cerradas (seguridad y justicia, política y leyes, prensa y libertad de expresión…),
+ para poder tabular.</li>
+ <li><b>Asunto</b>: una frase libre con el caso concreto (<i>«bienestar de niños y regulación redes sociales»</i>), para
+ poder seguir una historia. Los asuntos casi iguales se juntan después, sin volver a usar el modelo: una variante se une
+ a un grupo si comparte al menos el 60% de su vocabulario con el nombre que lo encabeza.</li>
+</ul>
+<p>El modelo <b>nunca ve la conferencia entera</b>: recibe una pregunta con su contexto inmediato, y devuelve la etiqueta
+junto con el fragmento que la justifica. Al corte van clasificadas 23,560 de las 24,290 preguntas (97%); las demás
+están pendientes o fueron rechazadas y quedan registradas como tales.</p>
+<p>La sección «Revisar, ver, analizar» no usa ningún modelo: son <b>reglas gramaticales</b> sobre las palabras de la
+presidenta («se está revisando», «vamos a revisarlo», «que lo revise la Fiscalía»).</p>
+
+<div class="aviso alerta"><p><b>Lo que se intentó y no se publica: la postura.</b> El objetivo original era clasificar
+cada pregunta como crítica al gobierno, afín o neutral. Antes de correr el modelo sobre todo el corpus, una persona
+codificó 150 preguntas a ciegas —sin ver periodista ni medio— para medir si el modelo coincidía. <b>No coincidió lo
+suficiente</b> (kappa de 0.34, cuando lo aceptable empieza en 0.6), y la propia persona, al recodificar una semana
+después, coincidió consigo misma igual de poco. La conclusión es que «afín al gobierno» no se puede leer en el
+texto de la pregunta. Por eso <b>ninguna página de este sitio muestra postura</b>.</p></div>
+
+<!-- ------------------------------------------------------------ diagrama -->
+<h2 id="m-diagrama"><small>6 · El diagrama</small>La solución completa, de la fuente a esta página</h2>
+<p>Los cilindros son archivos guardados; los rectángulos, programas; el hexágono, el único paso que usa un modelo de
+lenguaje. La línea punteada es lo que se probó y no se publica.</p>
+<div class="mermaid-env">
+<pre class="mermaid">
+flowchart TD
+  A["gob.mx/presidencia<br/>versiones estenográficas"] -->|"descubrimiento:<br/>recorre el archivo paginado"| B[("urls.jsonl")]
+  B -->|"descarga una sola vez<br/>respaldo: Wayback Machine"| C[("data/raw/<br/>HTML crudo, inmutable")]
+  C -->|"lector: limpia videos y espacios,<br/>parte por etiqueta de hablante"| D[("turnos.jsonl<br/>68,345 turnos")]
+  D -->|"autopresentación<br/>y propagación"| E[("hilos.jsonl<br/>2,737 tandas")]
+  CFG[["config/<br/>correcciones humanas"]] -.-> F
+  E --> F["canonización<br/>de nombres y medios"]
+  E -->|"pregunta + contexto acotado"| G{{"Gemini 2.5 Flash<br/>18 categorías + asunto"}}
+  G --> H[("temas_dos_niveles.jsonl<br/>con modelo y fragmento")]
+  H -->|"vocabulario compartido ≥ 60%"| I[("mapa_consolidacion.json")]
+  E -->|"reglas gramaticales,<br/>sin modelo"| J["revisar.py<br/>verbos de proceso"]
+  E -.->|"150 codificadas a mano:<br/>kappa 0.34, reprobó"| P["postura<br/>no se publica"]
+  F --> K["exploracion.py"]
+  H --> K
+  I --> K
+  J --> K
+  F --> L["exportar_buscador.py"]
+  H --> L
+  J --> L
+  K --> M["Quién pregunta"]
+  L --> N["Buscador<br/>corpus comprimido en la página"]
+  M --> O(("GitHub Pages"))
+  N --> O
+  classDef dato fill:#C9D7E8,stroke:#33587D,color:#121212
+  classDef prog fill:#FFFFFF,stroke:#33587D,color:#121212
+  classDef modelo fill:#121F45,stroke:#121F45,color:#FFFFFF
+  classDef fuera fill:#FFFFFF,stroke:#A63D40,color:#A63D40,stroke-dasharray:4 3
+  class B,C,D,E,H,I dato
+  class A,F,J,K,L,M,N,O,CFG prog
+  class G modelo
+  class P fuera
+</pre>
+</div>
+
+<!-- ------------------------------------------------------------ herramientas -->
+<h2 id="m-herramientas"><small>7 · Las herramientas</small>Con qué se hizo</h2>
+<div class="herr">
+ <div><b>Python 3.11</b><span>Todo el procesamiento, en un paquete propio con pruebas automáticas contra
+ conferencias de muestra (pytest).</span></div>
+ <div><b>requests · Playwright</b><span>Descubrimiento y descarga de las páginas de gob.mx; la Wayback Machine como
+ respaldo.</span></div>
+ <div><b>BeautifulSoup</b><span>Extraer el texto del HTML, que cambió de estructura entre 2024 y 2025.</span></div>
+ <div><b>Expresiones regulares</b><span>Partir turnos, reconocer autopresentaciones y clasificar los verbos de
+ proceso. Auditables línea por línea.</span></div>
+ <div><b>Gemini 2.5 Flash (google-genai)</b><span>Solo para categoría y asunto de cada pregunta. Todo lo demás es
+ determinista.</span></div>
+ <div><b>NumPy · SciPy · pandas</b><span>Conteos, correlaciones y el agrupamiento por vocabulario (distancia de
+ Jaccard, enlace promedio).</span></div>
+ <div><b>HTML, CSS y JavaScript sin frameworks</b><span>Las páginas se generan como archivos estáticos. El buscador
+ trae el corpus comprimido adentro y lo abre en el navegador con pako; no llama a ningún servidor.</span></div>
+ <div><b>Mermaid · GitHub Pages</b><span>Este diagrama y el alojamiento del sitio.</span></div>
+</div>
+<p>El código se escribió con un asistente de programación con IA (Claude Code), bajo reglas escritas para el proyecto:
+no volver a descargar la fuente, no descartar nada en silencio, registrar la procedencia de cada dato y no publicar
+ninguna medida que no haya pasado su validación.</p>
+
+<!-- ------------------------------------------------------------ límites -->
+<h2 id="m-limites"><small>8 · Cómo leerlo</small>Lo que estos datos no dicen</h2>
+<ul>
+ <li><b>Mide concesión de turnos, no asistencia.</b> La estenográfica registra a quien habló. De quien fue al salón y no
+ recibió la palabra no queda una sola línea: un medio ausente puede no haber ido nunca o haber ido cuarenta veces sin
+ micrófono.</li>
+ <li><b>Quién habla no es aleatorio.</b> La presidenta elige a quién darle la palabra y lo dice en voz alta. Cualquier
+ conclusión sobre «la prensa» tiene que discutir esa selección antes que cualquier otra cosa.</li>
+ <li><b>No mide postura.</b> Ver el apartado 5.</li>
+ <li><b>El buscador busca palabras literales.</b> No encontrar algo no prueba que no se dijo: puede haberse dicho con
+ otras palabras.</li>
+ <li><b>La fuente citable es la estenográfica de gob.mx</b>, no este sitio. Cada resultado del buscador enlaza a la
+ versión original para verificarlo.</li>
+</ul>
+<p class="pie" style="margin-top:34px">Datos al 30 de septiembre de 2026 · 485 conferencias · Fuente: versiones
+estenográficas de la Presidencia de la República, gob.mx.</p>
+</div>
+</main>
+
+<!-- ================================================================ EXPLORACIÓN -->
+<section class="vista" id="v-exploracion" role="tabpanel" hidden>
+ <iframe class="marco" title="Quién pregunta y cada cuándo" data-src="exploracion.html"></iframe>
+</section>
+
+<!-- ================================================================ BUSCADOR -->
+<section class="vista" id="v-buscador" role="tabpanel" hidden>
+ <p class="cargando" id="cargando">Cargando el buscador: trae el corpus completo adentro (12 MB), puede tardar unos segundos.</p>
+ <iframe class="marco" title="Buscador de preguntas" data-src="buscador.html"></iframe>
+</section>
+
+<script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
+mermaid.initialize({startOnLoad:false, theme:"base", securityLevel:"strict",
+  flowchart:{curve:"basis", htmlLabels:true},
+  themeVariables:{fontFamily:"Libre Franklin, system-ui, sans-serif", fontSize:"13px",
+    lineColor:"#5C7FA6", primaryTextColor:"#121212", edgeLabelBackground:"#FFFFFF"}});
+window.pintarDiagrama = () => mermaid.run({querySelector:".mermaid:not([data-processed])"});
+if (!document.getElementById("v-metodologia").hidden) window.pintarDiagrama();
+</script>
+<script>
+(function(){
+ var tabs=[].slice.call(document.querySelectorAll('.tab'));
+ // #revisar abre el buscador directo en su vista «Revisar y procesos en curso».
+ function ver(h){
+  var v=h.replace('#',''), extra='';
+  if(v==='revisar'){v='buscador';extra='#revisar';}
+  if(['metodologia','exploracion','buscador'].indexOf(v)<0) v='metodologia';
+  tabs.forEach(function(t){t.setAttribute('aria-selected',t.dataset.v===v?'true':'false');});
+  ['metodologia','exploracion','buscador'].forEach(function(k){document.getElementById('v-'+k).hidden=k!==v;});
+  var f=document.querySelector('#v-'+v+' iframe');
+  if(f && (!f.src || extra)){
+   f.src=f.dataset.src+extra;
+   var c=document.getElementById('cargando');
+   if(v==='buscador'&&c) f.addEventListener('load',function(){c.remove();},{once:true});
+  }
+  if(v==='metodologia' && window.pintarDiagrama) window.pintarDiagrama();
+  document.body.style.overflow = v==='metodologia' ? '' : 'hidden';
+ }
+ tabs.forEach(function(t){t.addEventListener('click',function(ev){
+  ev.preventDefault(); history.replaceState(null,'',t.getAttribute('href')); ver(t.getAttribute('href')); scrollTo(0,0);});});
+ // Los enlaces del índice (#m-…) se quedan en metodología y solo desplazan la página.
+ var h=location.hash;
+ ver(/^#m-/.test(h)?'#metodologia':(h||'#metodologia'));
+ if(/^#m-/.test(h)){var el=document.getElementById(h.slice(1)); if(el) el.scrollIntoView();}
+ addEventListener('hashchange',function(){ if(!/^#m-/.test(location.hash)) ver(location.hash); });
+})();
+</script>
+</body>
+</html>
