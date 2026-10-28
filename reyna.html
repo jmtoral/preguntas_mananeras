@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Las tandas que no se veían</title>
+<meta name="description" content="Corrección del conteo de Reyna Haydeé Ramírez en las conferencias matutinas: 11 tandas que se le acreditaban a otros periodistas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Bitter:wght@600;700&display=swap">
+<style>
+:root{
+ color-scheme:light;
+ --papel:#FFFFFF; --sup:#F7F7F5; --tinta:#121212; --suave:#5e5d59; --linea:#E2E2E2; --eje:#c9c8c2;
+ --p5:#121F45; --acento:#326891;
+ --s-ident:#2a78d6;   /* el lector la identificaba */
+ --s-recup:#eb6834;   /* recuperada a mano */
+ --s-claro:#9ec5f4;   /* parte corta del 100% */
+ --contexto:#c5c4be;
+ --f-body:Georgia,"Times New Roman",Times,serif;
+ --f-head:"Bitter",Georgia,serif;
+ --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:"Libre Franklin",system-ui,sans-serif;
+ font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.env{max-width:860px;margin:0 auto;padding:36px 16px 90px}
+.volver{font-size:13px;color:var(--acento);text-decoration:none}
+.volver:hover{text-decoration:underline}
+.et{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--suave);font-weight:600;margin:22px 0 10px}
+h1{font-family:var(--f-head);font-size:clamp(28px,4.6vw,40px);line-height:1.12;margin:0 0 12px;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--suave);font-family:var(--f-body);font-size:17px;margin:0;max-width:64ch}
+h2{font-family:var(--f-head);font-size:22px;line-height:1.2;margin:50px 0 8px}
+p{font-family:var(--f-body);font-size:16px;line-height:1.62;margin:0 0 14px;max-width:68ch}
+p.pie{font-family:"Libre Franklin",sans-serif;font-size:12.5px;color:var(--suave)}
+b{font-weight:700}
+
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linea);border:1px solid var(--linea);margin:26px 0 8px}
+.tile{background:var(--papel);padding:14px 14px 12px}
+.tile .lab{font-size:12.5px;color:var(--suave);line-height:1.35}
+.tile .val{font-size:30px;font-weight:700;color:var(--p5);font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1.1;margin:4px 0 2px}
+.tile .val small{font-size:17px;color:var(--suave);font-weight:600}
+@media(max-width:560px){.tiles{grid-template-columns:1fr}}
+
+.fig{border:1px solid var(--linea);background:var(--papel);padding:14px 14px 10px;margin:16px 0 6px}
+.fig h3{font-size:14px;margin:0 0 2px}
+.fig .q{font-size:12.5px;color:var(--suave);margin:0 0 10px}
+.ley{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--suave);margin:0 0 6px}
+.ley span{display:inline-flex;align-items:center;gap:7px}
+.ley i{width:12px;height:12px;border-radius:3px;display:inline-block}
+svg{display:block;width:100%;height:auto;overflow:visible}
+#g1,#g2,#g3,#g4{overflow-x:auto}
+#g1 svg,#g2 svg,#g3 svg,#g4 svg{min-width:620px}
+svg text{font-family:"Libre Franklin",system-ui,sans-serif}
+.ax{font-size:11px;fill:var(--suave);font-family:var(--f-mono)}
+.grid{stroke:var(--linea);stroke-width:1}
+.base{stroke:var(--eje);stroke-width:1}
+.lbl{font-size:12px;fill:var(--tinta)}
+.lbl-s{font-size:11.5px;fill:var(--suave)}
+.hit{fill:transparent;cursor:default}
+.mk:hover,.hit:hover+.mk{filter:brightness(.9)}
+
+#tip{position:fixed;pointer-events:none;opacity:0;transition:opacity .1s;background:var(--tinta);color:#fff;
+ padding:9px 11px;border-radius:5px;font-size:12.5px;line-height:1.45;max-width:min(340px,86vw);z-index:9;
+ box-shadow:0 6px 20px rgba(0,0,0,.25)}
+#tip.on{opacity:1}
+#tip b{display:block;font-size:13px}
+
+.tabla-env{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;vertical-align:top;padding:8px 9px;border-bottom:1px solid var(--linea)}
+th{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--suave)}
+td.n{text-align:right;font-family:var(--f-mono);font-size:12.5px;white-space:nowrap}
+td.f{font-family:var(--f-mono);font-size:12.5px;white-space:nowrap}
+td.prueba{font-family:var(--f-body);font-size:14px}
+.chip{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;border-radius:3px;padding:1px 6px;white-space:nowrap}
+.chip.i{background:#e6f0fc;color:#1c5cab}
+.chip.r{background:#fde9e0;color:#a5401a}
+.aviso{border-left:3px solid var(--acento);background:var(--sup);padding:13px 16px;margin:18px 0}
+.aviso p{margin:0;font-size:15px;color:var(--suave)}
+.aviso b{color:var(--tinta)}
+details{margin:6px 0 0}
+summary{cursor:pointer;font-size:12.5px;font-weight:600;color:var(--acento)}
+</style>
+</head>
+<body>
+<div class="env">
+<a class="volver" href="index.html">← Preguntas de la mañanera</a>
+<p class="et">Corrección de datos · corte al 30 de septiembre de 2026</p>
+<h1>Las tandas que no se veían: el caso de Reyna Haydeé Ramírez</h1>
+<p class="sub">El sistema reconoce a quien pregunta cuando dice su nombre al tomar el micrófono. Reyna Haydeé
+Ramírez dejó de presentarse en 2025, y desde entonces sus preguntas se le contaban al periodista que había hablado
+antes. Esta página explica qué pasaba, cómo se corrigió y cómo leer las cifras corregidas.</p>
+
+<div class="tiles" id="tiles"></div>
+
+<h2>Sus 14 tandas</h2>
+<p>Cada columna es una vez que recibió la palabra, ordenadas por fecha; la altura es el número de turnos que
+habló en esa tanda. De sus cuatro primeras tandas, el sistema la
+reconoció en tres; la del
+17 de octubre de 2024 se perdió por una errata de la estenográfica. A partir de marzo de 2025 ya no se presentó, y
+ninguna de sus tandas aparecía a su nombre.</p>
+<div class="fig">
+ <h3>Turnos por tanda, de octubre de 2024 a septiembre de 2026</h3>
+ <p class="q">Pasa el cursor sobre una columna para ver a quién se le contaba y la frase que prueba que era ella.</p>
+ <div class="ley"><span><i style="background:var(--s-ident)"></i>El sistema la identificaba</span><span><i style="background:var(--s-recup)"></i>Recuperada en esta corrección</span></div>
+ <div id="g1"></div>
+</div>
+
+<h2>A quién se le contaban</h2>
+<p>Los 864 turnos de las 11 tandas recuperadas estaban sumados al periodista que se había presentado antes que ella.
+Al corregir, esas personas pierden turnos que nunca fueron suyos.</p>
+<div class="fig">
+ <h3>Turnos de Reyna Haydeé que se le acreditaban a cada periodista</h3>
+ <p class="q">Antes de la corrección</p>
+ <div id="g2"></div>
+</div>
+
+<h2>Pocas veces, pero muy largas</h2>
+<p>Las dos versiones del desacuerdo público se sostienen con los datos. Ella dice que le dan poco la palabra: 14 veces
+en dos años, cuando los diez periodistas con más intervenciones tienen entre <span data-k="top10_min"></span> y
+<span data-k="top10_max"></span>. La presidenta dice que cuando se la da habla mucho («ya llevas 25 minutos»): promedia
+<span data-k="tpt_ella"></span> turnos por tanda, contra <span data-k="tpt_mediana"></span> de la mediana del corpus.</p>
+<div class="fig">
+ <h3>Intervenciones contra turnos por tanda</h3>
+ <p class="q">Cada punto es un periodista con 5 intervenciones o más. Pasa el cursor para ver el nombre.</p>
+ <div id="g3"></div>
+</div>
+
+<h2>Cómo son sus turnos</h2>
+<p>Sus tandas son debates de ida y vuelta, y más de la mitad de sus turnos son réplicas cortas («Pero se hacía»,
+«Exacto», «¿Sin consultar a la Presidenta?»). Por eso su número de turnos no se puede leer como número de preguntas
+distintas.</p>
+<div class="fig">
+ <h3>Turnos cortos y largos, comparada con los diez periodistas con más intervenciones</h3>
+ <p class="q">Corto: menos de 80 caracteres. Porcentaje de los turnos de cada persona.</p>
+ <div class="ley"><span><i style="background:var(--s-ident)"></i>80 caracteres o más</span><span><i style="background:var(--s-claro)"></i>Menos de 80 caracteres</span></div>
+ <div id="g4"></div>
+</div>
+
+<h2>La prueba de cada corrección</h2>
+<p>Ninguna tanda se asignó por intuición. En cada una, la estenográfica registra a la presidenta llamándola por su
+nombre, o a ella presentándose con una errata. La frase queda guardada junto a la corrección.</p>
+<div class="tabla-env"><table id="tabla">
+<thead><tr><th>Fecha</th><th class="n">Turnos</th><th>Antes se le contaba a</th><th>Prueba</th></tr></thead><tbody></tbody></table></div>
+
+<div class="aviso"><p><b>Qué no dice esta corrección.</b> No mide si sus preguntas son críticas o afines: ninguna
+página de este sitio clasifica postura. No dice por qué recibe o no la palabra; la presidenta elige a quién dársela.
+Y tiene un límite técnico: una tanda dura hasta que alguien más se presenta, así que si después de ella habló otra
+persona sin decir su nombre, esos turnos también quedaron en su tanda. Los que se revisaron corresponden a ella, pero
+no se leyeron uno por uno. Su tanda del 1 de octubre de 2026 cae fuera del corte.</p></div>
+
+<p class="pie">Fuente: versiones estenográficas de la Presidencia de la República, gob.mx. El mismo patrón —recibir la
+palabra sin presentarse— casi no aparece en otras personas del corpus. La metodología completa está en la pestaña
+<a href="index.html#metodologia">Metodología</a>.</p>
+</div>
+<div id="tip"></div>
+
+<script>
+const D = {"tandas": [{"fecha": "2024-10-08", "turnos": 15, "cortos": 4, "estado": "regex", "antes": null, "nota": ""}, {"fecha": "2024-10-17", "turnos": 22, "cortos": 10, "estado": "manual", "antes": "Jordana González", "nota": "«Haydeé Ramírez, reportera independente»: errata de la estenográfica en «independiente»"}, {"fecha": "2024-11-28", "turnos": 42, "cortos": 25, "estado": "regex", "antes": null, "nota": ""}, {"fecha": "2025-01-30", "turnos": 64, "cortos": 38, "estado": "regex", "antes": null, "nota": ""}, {"fecha": "2025-03-11", "turnos": 80, "cortos": 45, "estado": "manual", "antes": "Judith Sánchez Reyes", "nota": "no se presenta; «Yo creí que ya no me iba a dar la palabra, son 40 días»; la presidenta: «Mira, Reyna y todos…»"}, {"fecha": "2025-06-09", "turnos": 76, "cortos": 37, "estado": "manual", "antes": "Rocío Jardínez", "nota": "no se presenta; la presidenta: «Bueno, ándale, vamos a lo que sigue Reyna»; habla de Durazo y Sonora"}, {"fecha": "2025-06-19", "turnos": 44, "cortos": 22, "estado": "manual", "antes": "Yaneth Arciniega", "nota": "no se presenta; la presidenta: «puede haber opiniones distintas, Reyna, yo respeto mucho tu opinión»"}, {"fecha": "2025-08-13", "turnos": 108, "cortos": 60, "estado": "manual", "antes": "Amir Ibrahim", "nota": "no se presenta; «Parece que no me quiere dar mucho tiempo»; la presidenta: «Pero, fíjate, Reyna» y «no sé cuánto cueste allá en Hermosillo»"}, {"fecha": "2025-09-30", "turnos": 95, "cortos": 52, "estado": "manual", "antes": "Judith Sánchez Reyes", "nota": "no se presenta; la presidenta: «¿Reyna, quieres comentar algo?» y «Bueno, Reyna, tienes la palabra ahorita»"}, {"fecha": "2025-11-14", "turnos": 85, "cortos": 40, "estado": "manual", "antes": "Jeanette Alcantar", "nota": "no se presenta; la presidenta: «A ver, Reyna, ándale, pues» y «¿cómo se llama tu medio?» —«Yo no tengo un medio»"}, {"fecha": "2026-02-13", "turnos": 102, "cortos": 59, "estado": "manual", "antes": "Yaneth Arciniega", "nota": "no se presenta; la presidenta: «vamos a darle la palabra a Reyna»"}, {"fecha": "2026-03-10", "turnos": 71, "cortos": 42, "estado": "manual", "antes": "Ximena Mejía", "nota": "no se presenta; la presidenta: «Vamos ya, Reyna, para que los demás pregunten. Ya llevas 25 minutos»"}, {"fecha": "2026-03-27", "turnos": 76, "cortos": 37, "estado": "manual", "antes": "Aurora Castillejos", "nota": "no se presenta; la presidenta: «A ver, Reyna, te voy a dar la palabra»"}, {"fecha": "2026-06-18", "turnos": 105, "cortos": 72, "estado": "manual", "antes": "Juan Hernández", "nota": "no se presenta; la presidenta: «Breves, ya solo son tres preguntas, Reyna»"}], "contexto": [{"p": "Amir Ibrahim", "i": 7, "tpt": 8.1}, {"p": "Arturo Pavón", "i": 55, "tpt": 6.2}, {"p": "Manuel Pedrero", "i": 33, "tpt": 8.4}, {"p": "Aurora Castillejos", "i": 32, "tpt": 5.6}, {"p": "Karen Ballesteros", "i": 24, "tpt": 8.1}, {"p": "Elia Cruz", "i": 28, "tpt": 12.3}, {"p": "Shaila Rosagel", "i": 47, "tpt": 6.1}, {"p": "Mara Rivera", "i": 22, "tpt": 10.2}, {"p": "Carlos Domínguez", "i": 18, "tpt": 9.4}, {"p": "Nancy Flores", "i": 71, "tpt": 7.1}, {"p": "Rodrigo Muñoz", "i": 31, "tpt": 6.7}, {"p": "Nancy Gómez", "i": 9, "tpt": 4.3}, {"p": "Carlos Guzmán", "i": 55, "tpt": 9.4}, {"p": "Eliane Valadez", "i": 15, "tpt": 8.3}, {"p": "Tere Mora Guillén", "i": 29, "tpt": 6.6}, {"p": "Esteban Durán", "i": 17, "tpt": 5.9}, {"p": "Sandra Aguilera", "i": 11, "tpt": 4.5}, {"p": "Reyna Haydeé Ramírez", "i": 14, "tpt": 70.4}, {"p": "Karina Vargas", "i": 26, "tpt": 11.9}, {"p": "Armando Yeferson", "i": 7, "tpt": 7.6}, {"p": "Carlos Pozos", "i": 29, "tpt": 7.1}, {"p": "Mariana Madrid", "i": 23, "tpt": 6.6}, {"p": "Rocío Jardínez", "i": 15, "tpt": 9.5}, {"p": "Liliana Noble", "i": 36, "tpt": 6.2}, {"p": "Jordana González", "i": 6, "tpt": 4.5}, {"p": "Janet Galindo", "i": 30, "tpt": 6.4}, {"p": "Eduardo Ortega", "i": 15, "tpt": 12.5}, {"p": "Yulia Bonilla", "i": 24, "tpt": 11.5}, {"p": "Javier Pérez", "i": 31, "tpt": 7.6}, {"p": "Sandra Aguilar", "i": 27, "tpt": 6.9}, {"p": "Carlos Navarro", "i": 60, "tpt": 8.5}, {"p": "Cristian Galarza", "i": 9, "tpt": 3.8}, {"p": "José Manuel Fuentes", "i": 33, "tpt": 4.7}, {"p": "Judith Sánchez Reyes", "i": 31, "tpt": 13.5}, {"p": "Hans Salazar", "i": 68, "tpt": 9.8}, {"p": "Gloria Carpio", "i": 15, "tpt": 4.8}, {"p": "Óscar González", "i": 5, "tpt": 5.8}, {"p": "Juan Bautista", "i": 12, "tpt": 6.2}, {"p": "Luis Ángel Marín", "i": 17, "tpt": 9.0}, {"p": "Dalila Escobar", "i": 33, "tpt": 17.4}, {"p": "Julio Omar Gómez", "i": 24, "tpt": 9.7}, {"p": "Demian Duarte", "i": 40, "tpt": 8.7}, {"p": "Juan Hernández", "i": 61, "tpt": 8.2}, {"p": "Ramón Flores", "i": 29, "tpt": 5.4}, {"p": "Fernando Mejía", "i": 8, "tpt": 8.1}, {"p": "Manuel Galeazzi Ramírez", "i": 24, "tpt": 9.8}, {"p": "Liliana Piña", "i": 5, "tpt": 4.2}, {"p": "Fernanda López Castro", "i": 5, "tpt": 7.6}, {"p": "Marco Antonio Olvera", "i": 37, "tpt": 9.6}, {"p": "Alberto Marroquín Espinoza", "i": 19, "tpt": 5.0}, {"p": "Aissa García", "i": 32, "tpt": 11.5}, {"p": "Arturo Páramo", "i": 14, "tpt": 10.4}, {"p": "José Lebeña", "i": 23, "tpt": 8.7}, {"p": "Jonathan Lozada", "i": 19, "tpt": 5.6}, {"p": "Gaspar Vela", "i": 38, "tpt": 10.5}, {"p": "Salvador Corona", "i": 30, "tpt": 10.1}, {"p": "Alma Muñoz", "i": 6, "tpt": 8.3}, {"p": "Zósimo Camacho", "i": 22, "tpt": 7.9}, {"p": "Ivonne Menchaca", "i": 7, "tpt": 5.4}, {"p": "Yusbel Carolina", "i": 45, "tpt": 8.1}, {"p": "Adriana Santos", "i": 11, "tpt": 5.7}, {"p": "César Huerta", "i": 34, "tpt": 7.3}, {"p": "Yaneth Arciniega", "i": 65, "tpt": 7.9}, {"p": "Gustavo García", "i": 5, "tpt": 5.0}, {"p": "Sandy González", "i": 7, "tpt": 7.9}, {"p": "Ramón Ramírez Gutiérrez", "i": 15, "tpt": 6.5}, {"p": "Tania Damián", "i": 21, "tpt": 6.7}, {"p": "Olga Ojeda Lajud", "i": 32, "tpt": 8.6}, {"p": "Elideth Fernández", "i": 12, "tpt": 3.8}, {"p": "Héctor Tlatempa", "i": 7, "tpt": 7.9}, {"p": "Yesenia Peralta", "i": 17, "tpt": 8.0}, {"p": "Laura Ávila", "i": 11, "tpt": 6.9}, {"p": "Federico La Mont", "i": 6, "tpt": 4.2}, {"p": "Juan Carlos Sagredo", "i": 5, "tpt": 5.6}, {"p": "Julián Mazoy", "i": 18, "tpt": 8.3}, {"p": "Citlali Guerrero", "i": 22, "tpt": 8.5}, {"p": "Nancy Rodríguez", "i": 13, "tpt": 10.2}, {"p": "Vicente Serrano", "i": 29, "tpt": 11.0}, {"p": "Angélica Guerrero", "i": 17, "tpt": 12.1}, {"p": "Eduardo Esquivel Ancona", "i": 33, "tpt": 7.8}, {"p": "Zeltzin Juárez", "i": 35, "tpt": 8.1}, {"p": "Meme Yamel", "i": 8, "tpt": 7.9}, {"p": "Graciela Bravata", "i": 18, "tpt": 9.2}, {"p": "Oscar Zamudio", "i": 18, "tpt": 5.7}, {"p": "Alejandro Cabral", "i": 5, "tpt": 11.8}, {"p": "Eduardo Dina", "i": 6, "tpt": 9.3}, {"p": "Susana Carreño", "i": 7, "tpt": 7.6}, {"p": "Mireya Cuéllar", "i": 8, "tpt": 5.4}, {"p": "Claudia Guerrero", "i": 6, "tpt": 13.7}, {"p": "Luis Fernando Salas", "i": 6, "tpt": 5.5}, {"p": "Adrián Esquivel", "i": 6, "tpt": 7.2}, {"p": "Joanna Flores", "i": 25, "tpt": 10.5}, {"p": "Jennifer Barba", "i": 18, "tpt": 8.9}, {"p": "Santiago de Llano", "i": 11, "tpt": 9.0}, {"p": "Víctor Bárcenas", "i": 6, "tpt": 5.5}, {"p": "Julio Sánchez", "i": 17, "tpt": 16.7}, {"p": "Ximena Mejía", "i": 21, "tpt": 5.6}, {"p": "Máximo Allende", "i": 16, "tpt": 9.1}, {"p": "Juan Fierro", "i": 17, "tpt": 5.4}, {"p": "Emir Olivares", "i": 5, "tpt": 11.8}, {"p": "Elizabeth Robles", "i": 13, "tpt": 5.2}, {"p": "Daniela Caballero", "i": 7, "tpt": 3.9}, {"p": "Bertha Alicia Galindo", "i": 21, "tpt": 7.1}, {"p": "Juan Pablo Guerrero", "i": 5, "tpt": 5.4}, {"p": "Karina Aguilar", "i": 39, "tpt": 10.1}, {"p": "Israel Aldave", "i": 37, "tpt": 10.4}, {"p": "Alonso Urrutia", "i": 5, "tpt": 21.6}, {"p": "Mauricio Bautista", "i": 6, "tpt": 7.7}, {"p": "Luis Piña", "i": 5, "tpt": 9.8}, {"p": "Romina Gándara", "i": 17, "tpt": 7.0}, {"p": "Yessica Aupart", "i": 6, "tpt": 4.3}, {"p": "Carlos Padilla", "i": 12, "tpt": 6.2}, {"p": "Jeanette Alcantar", "i": 9, "tpt": 6.4}, {"p": "Francisco Montaño", "i": 6, "tpt": 7.3}, {"p": "Jorge Chaparro", "i": 13, "tpt": 19.7}, {"p": "Arturo Sánchez", "i": 5, "tpt": 9.2}, {"p": "Jatziri Magallanes", "i": 16, "tpt": 6.9}, {"p": "Alejandro Alemán", "i": 7, "tpt": 8.7}, {"p": "Noemí Gutiérrez", "i": 8, "tpt": 8.0}, {"p": "Ricardo Pérez", "i": 13, "tpt": 7.7}, {"p": "Armando Gama", "i": 11, "tpt": 7.6}, {"p": "Jorge Salcedo", "i": 6, "tpt": 6.2}, {"p": "Miguel Hernández", "i": 7, "tpt": 3.3}, {"p": "Raúl Benet", "i": 5, "tpt": 8.6}, {"p": "Enrique Muñiz", "i": 7, "tpt": 5.7}, {"p": "Gerardo Segoviano", "i": 7, "tpt": 6.3}, {"p": "Inés Arroyo", "i": 9, "tpt": 3.9}, {"p": "Laura Arana", "i": 7, "tpt": 4.6}, {"p": "Javier Tovar", "i": 5, "tpt": 8.8}, {"p": "Perla Velázquez", "i": 5, "tpt": 5.2}], "composicion": [{"p": "Reyna Haydeé Ramírez", "turnos": 985, "cortos": 543}, {"p": "Nancy Flores", "turnos": 505, "cortos": 113}, {"p": "Hans Salazar", "turnos": 667, "cortos": 254}, {"p": "Yaneth Arciniega", "turnos": 515, "cortos": 161}, {"p": "Juan Hernández", "turnos": 500, "cortos": 194}, {"p": "Carlos Navarro", "turnos": 512, "cortos": 166}, {"p": "Arturo Pavón", "turnos": 342, "cortos": 98}, {"p": "Carlos Guzmán", "turnos": 515, "cortos": 167}, {"p": "Shaila Rosagel", "turnos": 286, "cortos": 86}, {"p": "Yusbel Carolina", "turnos": 365, "cortos": 104}, {"p": "Demian Duarte", "turnos": 348, "cortos": 86}], "resumen": {"interv_antes": 3, "interv_ahora": 14, "turnos_antes": 121, "turnos_ahora": 985, "lugar_interv_antes": 139, "lugar_interv_ahora": 71, "personas": 397, "tpt_ella": 70.4, "tpt_mediana": 5.9, "tpt_promedio": 8.3, "top10_min": 40, "top10_max": 71}};
+const NS = "http://www.w3.org/2000/svg";
+const R = D.resumen;
+const fmt = n => n.toLocaleString("es-MX");
+const col = v => `var(${v})`;
+function el(t, a, p){ const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
+function txt(p, x, y, s, cls, anchor){ const t = el("text", {x, y, class: cls, "text-anchor": anchor || "start"}, p); t.textContent = s; return t; }
+const tip = document.getElementById("tip");
+function hover(node, html){
+  const on = ev => { tip.innerHTML = html; tip.classList.add("on"); mover(ev); };
+  const mover = ev => { const w = tip.offsetWidth, h = tip.offsetHeight;
+    let x = ev.clientX + 14, y = ev.clientY - h - 12; if (x + w > innerWidth - 8) x = ev.clientX - w - 14; if (y < 8) y = ev.clientY + 16;
+    tip.style.left = x + "px"; tip.style.top = y + "px"; };
+  node.addEventListener("pointerenter", on); node.addEventListener("pointermove", mover);
+  node.addEventListener("pointerleave", () => tip.classList.remove("on"));
+  node.setAttribute("tabindex", "0");
+  node.addEventListener("focus", () => { const r = node.getBoundingClientRect(); on({clientX: r.left + r.width/2, clientY: r.top}); });
+  node.addEventListener("blur", () => tip.classList.remove("on"));
+}
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MES = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+const fcorta = f => { const [a, m, d] = f.split("-"); return `${+d} ${MES[m-1]} ${a.slice(2)}`; };
+// Una barra con extremo de datos redondeado (4px) y base cuadrada.
+function barraV(p, x, y, w, h, fill){ const r = Math.min(4, h, w/2);
+  return el("path", {d: `M${x},${y+h}V${y+r}Q${x},${y} ${x+r},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h}Z`, fill, class: "mk"}, p); }
+function barraH(p, x, y, w, h, fill){ const r = Math.min(4, w, h/2);
+  return el("path", {d: `M${x},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h-r}Q${x+w},${y+h} ${x+w-r},${y+h}H${x}Z`, fill, class: "mk"}, p); }
+function nice(m){ const p = 10 ** Math.floor(Math.log10(m)), f = m / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * p; }
+
+// --- tiles
+document.getElementById("tiles").innerHTML = [
+  ["Intervenciones a su nombre", `${R.interv_antes} <small>→</small> ${R.interv_ahora}`],
+  ["Turnos que se le acreditaban a otros", fmt(R.turnos_ahora - R.turnos_antes)],
+  ["Tandas recuperadas", fmt(D.tandas.filter(t => t.estado === "manual").length)],
+].map(([l, v]) => `<div class="tile"><div class="lab">${l}</div><div class="val">${v}</div></div>`).join("");
+document.querySelectorAll("[data-k]").forEach(s => { const v = R[s.dataset.k]; s.textContent = typeof v === "number" ? (Number.isInteger(v) ? fmt(v) : v.toFixed(1)) : v; });
+
+// --- g1: columnas por tanda
+(function(){
+  const T = D.tandas, W = 760, H = 300, ml = 34, mr = 8, mt = 22, mb = 46;
+  const svg = el("svg", {viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Turnos por tanda de Reyna Haydeé Ramírez"}, document.getElementById("g1"));
+  const mxT = Math.max(...T.map(t => t.turnos)), paso = nice(mxT / 4), top = Math.ceil(mxT / paso) * paso, Y = v => mt + (H - mt - mb) * (1 - v / top);
+  for (let g = 0; g <= top; g += paso){ el("line", {x1: ml, x2: W - mr, y1: Y(g), y2: Y(g), class: g ? "grid" : "base"}, svg); txt(svg, ml - 6, Y(g) + 4, g, "ax", "end"); }
+  const band = (W - ml - mr) / T.length, bw = Math.min(24, band - 8);
+  T.forEach((t, i) => {
+    const cx = ml + band * (i + .5), x = cx - bw / 2, fill = col(t.estado === "manual" ? "--s-recup" : "--s-ident");
+    const g = el("g", {}, svg);
+    el("rect", {x: cx - band / 2, y: mt, width: band, height: H - mt - mb, class: "hit"}, g);
+    barraV(g, x, Y(t.turnos), bw, Y(0) - Y(t.turnos), fill);
+    const lab = txt(svg, cx, H - mb + 16, fcorta(t.fecha), "ax", "end");
+    lab.setAttribute("transform", `rotate(-40 ${cx} ${H - mb + 16})`);
+    hover(g, `<b>${fcorta(t.fecha)} · ${t.turnos} turnos</b>` + (t.antes
+      ? `Antes se le contaba a ${esc(t.antes)}.<br>${esc(t.nota)}` : "El sistema la identificaba: se presentó con su nombre."));
+  });
+  const imax = T.reduce((a, t, i) => t.turnos > T[a].turnos ? i : a, 0);
+  txt(svg, ml + band * (imax + .5), Y(T[imax].turnos) - 6, T[imax].turnos, "lbl", "middle");
+})();
+
+// --- g2: barras horizontales por periodista
+(function(){
+  const c = {}; D.tandas.forEach(t => { if (t.antes) c[t.antes] = (c[t.antes] || 0) + t.turnos; });
+  const F = Object.entries(c).sort((a, b) => b[1] - a[1]);
+  const W = 760, fila = 30, ml = 170, mr = 46, H = F.length * fila + 6;
+  const svg = el("svg", {viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Turnos acreditados a otros periodistas"}, document.getElementById("g2"));
+  const mx = F[0][1], X = v => (W - ml - mr) * v / mx;
+  F.forEach(([p, v], i) => {
+    const y = i * fila + 6, g = el("g", {}, svg);
+    el("rect", {x: 0, y: y - 4, width: W, height: fila, class: "hit"}, g);
+    txt(svg, ml - 10, y + 14, p, "lbl", "end");
+    barraH(g, ml, y + 2, X(v), 16, col("--s-recup"));
+    txt(svg, ml + X(v) + 6, y + 15, v, "lbl-s");
+    const fechas = D.tandas.filter(t => t.antes === p).map(t => fcorta(t.fecha)).join(", ");
+    hover(g, `<b>${esc(p)}</b>${v} turnos de Reyna Haydeé, de ${fechas}`);
+  });
+  el("line", {x1: ml, x2: ml, y1: 0, y2: H, class: "base"}, svg);
+})();
+
+// --- g3: dispersión
+(function(){
+  const P = D.contexto, ella = "Reyna Haydeé Ramírez";
+  const W = 760, H = 360, ml = 40, mr = 16, mt = 14, mb = 40;
+  const svg = el("svg", {viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Intervenciones contra turnos por tanda"}, document.getElementById("g3"));
+  const xm = nice(Math.max(...P.map(p => p.i)) / 4) * 4, ym = nice(Math.max(...P.map(p => p.tpt)) / 4) * 4;
+  const X = v => ml + (W - ml - mr) * v / xm, Y = v => mt + (H - mt - mb) * (1 - v / ym);
+  for (let g = 0; g <= ym; g += ym / 4){ el("line", {x1: ml, x2: W - mr, y1: Y(g), y2: Y(g), class: g ? "grid" : "base"}, svg); txt(svg, ml - 6, Y(g) + 4, g, "ax", "end"); }
+  for (let g = 0; g <= xm; g += xm / 4) txt(svg, X(g), H - mb + 16, g, "ax", "middle");
+  txt(svg, (ml + W - mr) / 2, H - 6, "Intervenciones (veces que recibió la palabra) →", "lbl-s", "middle");
+  const yl = txt(svg, 12, (mt + H - mb) / 2, "Turnos por tanda →", "lbl-s", "middle"); yl.setAttribute("transform", `rotate(-90 12 ${(mt + H - mb) / 2})`);
+  P.filter(p => p.p !== ella).concat(P.filter(p => p.p === ella)).forEach(p => {
+    const yo = p.p === ella, g = el("g", {}, svg);
+    el("circle", {cx: X(p.i), cy: Y(p.tpt), r: 11, class: "hit"}, g);
+    el("circle", {cx: X(p.i), cy: Y(p.tpt), r: yo ? 7 : 5, fill: col(yo ? "--s-recup" : "--contexto"), stroke: "#fff", "stroke-width": 2, class: "mk"}, g);
+    hover(g, `<b>${esc(p.p)}</b>${p.i} intervenciones · ${p.tpt} turnos por tanda`);
+  });
+  const e = P.find(p => p.p === ella);
+  txt(svg, X(e.i) + 12, Y(e.tpt) + 4, `${ella}: ${e.i} intervenciones, ${e.tpt} turnos por tanda`, "lbl");
+  const m = P.reduce((a, b) => b.i > a.i ? b : a);
+  txt(svg, X(m.i) - 10, Y(m.tpt) - 10, `${m.p}: ${m.i}`, "lbl-s", "end");
+})();
+
+// --- g4: 100% apilado
+(function(){
+  const C = D.composicion, W = 760, fila = 28, ml = 170, mr = 46, H = C.length * fila + 22;
+  const svg = el("svg", {viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Proporción de turnos cortos"}, document.getElementById("g4"));
+  const X = v => (W - ml - mr) * v;
+  C.forEach((c, i) => {
+    const y = i * fila + 4, largos = (c.turnos - c.cortos) / c.turnos, g = el("g", {}, svg);
+    el("rect", {x: 0, y: y - 4, width: W, height: fila, class: "hit"}, g);
+    const t = txt(svg, ml - 10, y + 14, c.p, "lbl", "end"); if (i === 0) t.setAttribute("font-weight", "700");
+    el("rect", {x: ml, y: y + 2, width: Math.max(0, X(largos) - 1), height: 16, fill: col("--s-ident"), class: "mk"}, g);
+    barraH(g, ml + X(largos) + 1, y + 2, Math.max(0, X(1 - largos) - 1), 16, col("--s-claro"));
+    txt(svg, W - mr + 6, y + 15, Math.round(100 * c.cortos / c.turnos) + "%", "lbl-s");
+    hover(g, `<b>${esc(c.p)}</b>${fmt(c.turnos)} turnos · ${fmt(c.cortos)} de menos de 80 caracteres (${Math.round(100 * c.cortos / c.turnos)}%)`);
+  });
+  txt(svg, W - mr + 6, H - 2, "cortos", "ax");
+})();
+
+// --- tabla
+document.querySelector("#tabla tbody").innerHTML = D.tandas.map(t =>
+  `<tr><td class="f">${t.fecha}</td><td class="n">${t.turnos}</td><td>${t.antes ? esc(t.antes) : '<span class="chip i">se presentó</span>'}</td>` +
+  `<td class="prueba">${t.antes ? '<span class="chip r">recuperada</span> ' + esc(t.nota) : "Se presentó con su nombre; el sistema la reconoció."}</td></tr>`).join("");
+</script>
+</body>
+</html>
