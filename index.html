@@ -159,12 +159,12 @@ datos, qué es cada unidad que se cuenta y qué no se puede concluir con ellos.<
 <div class="cifras" id="m-cifras">
  <div><b>485</b><span>conferencias, del 3 de octubre de 2024 al 30 de septiembre de 2026</span></div>
  <div><b>68,345</b><span>turnos de habla</span></div>
- <div><b>24,290</b><span>preguntas de la prensa</span></div>
- <div><b>2,737</b><span>tandas: alguien recibe el micrófono y hace su serie de preguntas</span></div>
- <div><b>383</b><span>periodistas identificados</span></div>
- <div><b>620</b><span>medios nombrados</span></div>
+ <div><b>24,379</b><span>preguntas de la prensa</span></div>
+ <div><b>2,796</b><span>tandas: alguien recibe el micrófono y hace su serie de preguntas</span></div>
+ <div><b>395</b><span>periodistas identificados</span></div>
+ <div><b>632</b><span>medios nombrados</span></div>
 </div>
-<p class="pie">Las dos pestañas de al lado usan exactamente este corte y estos conteos. De las 485 conferencias, <b>481</b> tienen al menos una pregunta atribuida a un periodista. Las otras 4 no entran al buscador ni a los conteos por periodista: en una no hubo preguntas de la prensa, en otra solo hubo saludos, en otra nadie dijo su nombre y en la del 7 de abril de 2025 quienes preguntaron se presentaron sin nombrar un medio («soy creador de contenido»), una forma que el lector todavía no reconoce.</p>
+<p class="pie">Las dos pestañas de al lado usan exactamente este corte y estos conteos. De las 485 conferencias, <b>482</b> tienen al menos una pregunta atribuida a un periodista. Las otras 3 no entran al buscador ni a los conteos por periodista: en una no hubo ronda de preguntas, en otra solo hubo saludos y en la tercera nadie dijo su nombre.</p>
 
 <!-- ------------------------------------------------------------ fuente -->
 <h2 id="m-fuente"><small>1 · La fuente</small>Las versiones estenográficas de gob.mx</h2>
@@ -223,11 +223,11 @@ invitados, la prensa.</td><td class="n">68,345</td></tr>
 <tr><td>Turno de prensa</td><td>Un turno con etiqueta de la prensa (<code>PREGUNTA:</code>, <code>INTERLOCUTOR:</code>).
 Incluye saludos, inaudibles y gritos desde el salón.</td><td class="n">28,615</td></tr>
 <tr><td>Pregunta</td><td>Un turno de prensa dentro de una tanda que no es ruido. <b>Un turno es una pregunta aunque
-traiga tres interrogaciones adentro</b>: se cuenta lo que la persona dijo de corrido antes de que le contestaran.</td><td class="n">24,290</td></tr>
+traiga tres interrogaciones adentro</b>: se cuenta lo que la persona dijo de corrido antes de que le contestaran.</td><td class="n">24,379</td></tr>
 <tr><td>Tanda · intervención</td><td>Una persona recibe el micrófono, se presenta y hace su serie de preguntas, con las
-respuestas intercaladas. En los datos se llama <i>hilo</i>.</td><td class="n">2,737</td></tr>
+respuestas intercaladas. En los datos se llama <i>hilo</i>.</td><td class="n">2,796</td></tr>
 <tr><td>Intercambio</td><td>Una pregunta más todo lo que le contestan hasta la siguiente pregunta. Es lo que muestra el
-buscador como resultado.</td><td class="n">24,290</td></tr>
+buscador como resultado.</td><td class="n">24,379</td></tr>
 </tbody></table></div>
 
 <div class="aviso"><p><b>Por qué importa la diferencia.</b> «Fulano hizo 600 preguntas» y «a Fulano le dieron la
@@ -298,7 +298,8 @@ persona se presenta en voz alta, y eso hace una sola vez por tanda.</p>
  desde el salón— la atribución se marca <code>incierta</code> y no se le asigna a nadie.</li>
  <li><b>Canonización.</b> Los nombres se escriben mal y los medios de muchas formas. Las erratas se unen solas cuando una
  grafía es rara y la otra frecuente; cuando las dos son frecuentes, decide una persona (pueden ser dos periodistas
- distintos). Esas decisiones viven en tablas de corrección escritas a mano. Quien nombra varias cabeceras
+ distintos). Esas decisiones viven en tablas de corrección escritas a mano. Lo mismo con las presentaciones que ningún patrón alcanza —«Mi nombre es Christian Mart y soy
+ creador de contenido», sin medio—: 25 están anotadas a mano, turno por turno, y quedan marcadas como <code>manual</code>. Quien nombra varias cabeceras
  —<i>«Diario Basta, Tabasco Hoy, Campeche Hoy y Quintana Roo Hoy, de Grupo Cantón»</i>— le suma un turno a cada una.</li>
 </ul>
 <div class="aviso alerta"><p><b>El faltante conocido.</b> Contra un conteo manual externo del primer semestre de 2026
@@ -317,7 +318,7 @@ niveles:</p>
  a un grupo si comparte al menos el 60% de su vocabulario con el nombre que lo encabeza.</li>
 </ul>
 <p>El modelo <b>nunca ve la conferencia entera</b>: recibe una pregunta con su contexto inmediato, y devuelve la etiqueta
-junto con el fragmento que la justifica. Al corte van clasificadas 23,560 de las 24,290 preguntas (97%); las demás
+junto con el fragmento que la justifica. Al corte van clasificadas 23,560 de las 24,379 preguntas (97%); las demás
 están pendientes o fueron rechazadas y quedan registradas como tales.</p>
 <p>La sección «Revisar, ver, analizar» no usa ningún modelo: son <b>reglas gramaticales</b> sobre las palabras de la
 presidenta («se está revisando», «vamos a revisarlo», «que lo revise la Fiscalía»).</p>
@@ -339,7 +340,7 @@ flowchart TD
   A["gob.mx/presidencia<br/>versiones estenográficas"] -->|"descubrimiento:<br/>recorre el archivo paginado"| B[("urls.jsonl")]
   B -->|"descarga una sola vez<br/>respaldo: Wayback Machine"| C[("data/raw/<br/>HTML crudo, inmutable")]
   C -->|"lector: limpia videos y espacios,<br/>parte por etiqueta de hablante"| D[("turnos.jsonl<br/>68,345 turnos")]
-  D -->|"autopresentación<br/>y propagación"| E[("hilos.jsonl<br/>2,737 tandas")]
+  D -->|"autopresentación<br/>y propagación"| E[("hilos.jsonl<br/>2,796 tandas")]
   CFG[["config/<br/>correcciones humanas"]] -.-> F
   E --> F["canonización<br/>de nombres y medios"]
   E -->|"pregunta + contexto acotado"| G{{"Gemini 2.5 Flash<br/>18 categorías + asunto"}}
